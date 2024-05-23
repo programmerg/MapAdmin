@@ -1,0 +1,386 @@
+
+  # -------------- GENERAL SETTINGS ------------------
+
+# FONTSET "fonts/fonts.list"
+# SYMBOLSET "symbols/symbols.map"
+
+  NAME "mapserv"
+  SIZE 256 256
+  MAXSIZE 4096
+  IMAGETYPE "png8"
+# IMAGECOLOR 255 255 255
+# EXTENT -180 -90 180 90 # WGS84
+  EXTENT -20026376.39 -20048966.10 20026376.39 20048966.10 # WebMercator
+# EXTENT 749308 285203 749830 285490 #EOV
+  UNITS meters
+
+  PROJECTION
+#   "init=epsg:4326"      # WGS84
+    "init=epsg:3857"      # WebMercator
+#   "init=epsg:900913"    # WebMercator
+#   "init=epsg:23700"     # HD72-EOV
+  END
+  
+  LEGEND # for GetLegendGraphic requests
+    LABEL
+      TYPE BITMAP
+      SIZE MEDIUM
+      COLOR 20 20 20
+    END
+    IMAGECOLOR 255 255 255
+    KEYSPACING 10 10
+    KEYSIZE 12 12
+  END
+
+  SCALEBAR
+    IMAGECOLOR 255 255 255
+    LABEL
+      SIZE TINY
+      COLOR 20 20 20
+    END
+    STYLE 1
+    SIZE 100 2
+    COLOR 20 20 20
+    UNITS MILES
+    INTERVALS 2
+    TRANSPARENT TRUE
+  END
+  
+  QUERYMAP # for GetFeatureInfo "info_format=text/html" requests
+    STATUS ON
+    SIZE 200 200
+    COLOR 255 255 0
+    STYLE HILITE
+  END
+
+  # ----------------- SERVICES ----------------------
+
+  WEB
+#   IMAGEPATH "/tmp/mapserv/"
+    METADATA
+      "ms_enable_modes"                   "!*" # MAP TILE BROWSE LEGEND SCALEBAR
+      "tile_map_edge_buffer"              "10"
+      "tile_metatile_level"               "1"
+
+      # OWS Settings
+      "ows_title"                         "MapServer OGC Web Service"
+      "ows_abstract"                      ""
+      "ows_keywordlist"                   "mapserver,wms,wfs,wcs"
+      "ows_accessconstraints"             "NONE"
+      "ows_fees"                          "NONE"
+#     "ows_onlineresource"                "http://127.0.0.1/cgi-bin/mapserv"
+      "ows_service_onlineresource"        "https://mapserver.org"
+      "ows_srs"                           "AVALIABLE_SRS_LIST"
+      "ows_sld_enabled"                   "true"
+      "ows_enable_request"                "*"
+#     "ows_updatesequence"                "0"
+#     "ows_allowed_ip_list"               ""
+#     "ows_denied_ip_list"                ""
+      "ows_contactperson"                 "Administrator"
+      "ows_contactorganization"           "Organization"
+      "ows_contactposition"               ""
+      "ows_contactelectronicmailaddress"  "info@localhost"
+      "ows_contactvoicetelephone"         ""
+      "ows_contactfacsimiletelephone"     ""
+      "ows_addresstype"                   ""
+      "ows_address"                       ""
+      "ows_city"                          ""
+      "ows_stateorprovince"               ""
+      "ows_postcode"                      ""
+      "ows_country"                       ""
+      "ows_hoursofservice"                ""
+      "ows_contactinstructions"           ""
+      "ows_role"                          ""
+
+      # WMS settings
+      "wms_title"                         "MapServer Web Map Service"
+      "wms_abstract"                      ""
+      "wms_keywordlist"                   "mapserver,wms"
+      "wms_accessconstraints"             "NONE"
+      "wms_fees"                          "NONE"
+#     "wms_onlineresource"                "http://127.0.0.1/cgi-bin/mapserv"
+      "wms_srs"                           "AVALIABLE_SRS_LIST"
+      "wms_encoding"                      "UTF-8"
+      "wms_enable_request"                "*" # GetCapabilities, DescribeLayer, GetMap, GetFeatureInfo, GetLegendGraphic, GetStyles
+      "wms_getmap_formatlist"             "png,png8,jpeg,jpeg-png,jpeg-png8,svg,pdf,kml,kmz,utfgrid,geotiff,geotiff16,xbil,mvt,application/openlayers"
+      "wms_getlegendgraphic_formatlist"   "png,png8,jpeg,jpeg-png,jpeg-png8,svg,pdf,kml,kmz,utfgrid,geotiff"
+      "wms_getfeatureinfo_formatlist"     "text/plain,application/vnd.ogc.gml,geojson,json,text/csv"
+      "wms_layerlimit"                    "500"
+      "wms_allow_getmap_without_styles"   "true"
+
+      "wfs_title"                         "MapServer Web Feature Service"
+      "wfs_abstract"                      ""
+      "wfs_keywordlist"                   "mapserver,wfs"
+      "wfs_accessconstraints"             "NONE"
+      "wfs_fees"                          "NONE"
+#     "wfs_onlineresource"                "http://127.0.0.1/cgi-bin/mapserv"
+      "wfs_srs"                           "AVALIABLE_SRS_LIST"
+      "wfs_encoding"                      "UTF-8"
+      "wfs_enable_request"                "*" # GetCapabilities, DescribeFeatureType, GetFeature
+      "wfs_getfeature_formatlist"         "ogrgml,geojson,json,csv,kml,kmz,shape-zip"
+      "wfs_maxfeatures"                   "500000"
+      "wfs_return_srs_as_urn"             "false"
+      "wfs_namespace_prefix"              "tows"
+      "wfs_namespace_uri"                 "http://www.mapserver.org/tinyows/"
+      "tinyows_onlineresource"            "http://127.0.0.1/cgi-bin/tinyows" # mandatory
+      "tinyows_schema_dir"                "/usr/local/share/tinyows/schema/" # mandatory
+      "tinyows_log"                       "log/tinyows.log"
+      "tinyows_log_level"                 "1"
+      "tinyows_expose_pk"                 "1"
+
+      "wcs_label"                         "MapServer Web Coverage Service"
+      "wcs_description"                   ""
+      "wcs_keywords"                      "mapserver,wcs"
+      "wcs_accessconstraints"             "NONE"
+      "wcs_fees"                          "NONE"
+#     "wcs_onlineresource"                "http://127.0.0.1/cgi-bin/mapserv"
+      "wcs_enable_request"                "*" # GetCapabilities, DescribeCoverage, GetCoverage
+
+#     "oga_onlineresource"                "http://127.0.0.1/cgi-bin/mapserv"
+      "oga_html_template_directory"       "/var/www/data_dir/templates/html-bootstrap4/"
+      "oga_enable_request"                "*"
+    END
+  END 
+  
+  # --------------- OUTPUTFORMATS -------------------
+
+  OUTPUTFORMAT
+    NAME "png"
+    DRIVER "AGG/PNG"
+    MIMETYPE "image/png"
+    IMAGEMODE RGB
+    EXTENSION "png"
+    FORMATOPTION "GAMMA=0.75"
+  END
+
+  OUTPUTFORMAT
+    NAME "png8"
+    DRIVER "AGG/PNG8"
+    MIMETYPE "image/png; mode=8bit"
+    IMAGEMODE RGB
+    EXTENSION "png"
+    FORMATOPTION "QUANTIZE_FORCE=on"
+    FORMATOPTION "QUANTIZE_COLORS=256"
+    FORMATOPTION "GAMMA=0.75"
+  END
+
+  OUTPUTFORMAT
+    NAME "jpeg"
+    DRIVER "AGG/JPEG"
+    MIMETYPE "image/jpeg"
+    IMAGEMODE RGB
+    EXTENSION "jpg"
+    FORMATOPTION "GAMMA=0.75"
+  END
+
+  OUTPUTFORMAT
+    NAME "jpeg_png"
+    MIMETYPE "image/vnd.jpeg-png"
+    DRIVER "AGG/MIXED"
+    IMAGEMODE RGBA
+    FORMATOPTION "TRANSPARENT_FORMAT=png"
+    FORMATOPTION "OPAQUE_FORMAT=jpeg"
+  END
+
+  OUTPUTFORMAT
+    NAME "jpeg_png8"
+    MIMETYPE "image/vnd.jpeg-png8"
+    DRIVER "AGG/MIXED"
+    IMAGEMODE RGBA
+    FORMATOPTION "TRANSPARENT_FORMAT=png8"
+    FORMATOPTION "OPAQUE_FORMAT=jpeg"
+  END
+
+  OUTPUTFORMAT
+    NAME "svg"
+    DRIVER "CAIRO/SVG"
+    MIMETYPE "image/svg+xml"
+    IMAGEMODE RGB
+    EXTENSION "svg"
+  END
+
+  OUTPUTFORMAT
+    NAME "pdf"
+    DRIVER "CAIRO/PDF"
+    MIMETYPE "application/pdf"
+    IMAGEMODE RGB
+    EXTENSION "pdf"
+  END
+
+  OUTPUTFORMAT
+    NAME "geotiff"
+    DRIVER "GDAL/GTiff"
+    MIMETYPE "image/tiff"
+    IMAGEMODE RGB
+    EXTENSION "tif"
+  END
+
+  OUTPUTFORMAT
+    NAME "geotiff16"
+    DRIVER "GDAL/GTiff"
+    MIMETYPE "image/tiff"
+    IMAGEMODE FLOAT32
+    EXTENSION "tif"
+  END
+
+  OUTPUTFORMAT
+    NAME "xbil"
+    DRIVER "GDAL/ENVI"
+    MIMETYPE "image/x-bil;bits=32"
+    IMAGEMODE FLOAT32
+    EXTENSION "bil"
+    FORMATOPTION "INTERLEAVE=BIL"
+  END
+
+  OUTPUTFORMAT
+    NAME "aaigrid"
+    DRIVER "GDAL/AAIGRID"
+    MIMETYPE "image/x-aaigrid"
+    IMAGEMODE INT16
+    EXTENSION "grd"
+    FORMATOPTION "FILENAME=result.grd"
+  END
+
+  OUTPUTFORMAT
+    NAME "kml"
+    DRIVER "KML"
+    MIMETYPE "application/vnd.google-earth.kml+xml"
+    IMAGEMODE RGB
+    EXTENSION "kml"
+    FORMATOPTION "ATTACHMENT=result.kml"
+    FORMATOPTION "maxfeaturestodraw=100"
+  END
+
+  OUTPUTFORMAT
+    NAME "kmz"
+    DRIVER "KMZ"
+    MIMETYPE "application/vnd.google-earth.kmz"
+    IMAGEMODE RGB
+    EXTENSION "kmz"
+    FORMATOPTION "ATTACHMENT=result.kmz"
+  END
+
+  OUTPUTFORMAT
+    NAME "csv"
+    DRIVER "OGR/CSV"
+    MIMETYPE "text/csv"
+    FORMATOPTION "LCO:GEOMETRY=AS_WKT"
+    FORMATOPTION "STORAGE=memory"
+    FORMATOPTION "FORM=simple"
+    FORMATOPTION "FILENAME=result.csv"
+  END
+
+  OUTPUTFORMAT
+    NAME "shape-zip"
+    DRIVER "OGR/ESRI Shapefile"
+    FORMATOPTION "STORAGE=memory"
+    FORMATOPTION "FORM=zip"
+    FORMATOPTION "FILENAME=result.zip"
+  END
+
+  OUTPUTFORMAT
+    NAME "utfgrid"
+    DRIVER "UTFGRID"
+    MIMETYPE "application/json;type=utfgrid"
+    FORMATOPTION "LABELS=true"
+    FORMATOPTION "UTFRESOLUTION=4"
+    FORMATOPTION "DUPLICATES=false"
+  END
+
+  OUTPUTFORMAT
+    NAME "geojson"
+    DRIVER "OGR/GEOJSON"
+    MIMETYPE "application/json;subtype=geojson"
+    FORMATOPTION "STORAGE=stream"
+    FORMATOPTION "FORM=SIMPLE"
+    FORMATOPTION "USE_FEATUREID=true"
+  END
+
+  OUTPUTFORMAT
+    NAME "json"
+    DRIVER "OGR/GEOJSON"
+    MIMETYPE "application/json"
+    FORMATOPTION "STORAGE=stream"
+    FORMATOPTION "FORM=SIMPLE"
+    FORMATOPTION "USE_FEATUREID=true"
+  END
+  
+  OUTPUTFORMAT
+    NAME "mvt"
+    DRIVER "MVT"
+    EXTENSION "pbf"
+    FORMATOPTION "EDGE_BUFFER=20"
+    FORMATOPTION "EXTENT=4096"
+  END 
+
+  # outputformat used by WMS GetFeatureInfo request, not the WFS GetFeature requests
+  OUTPUTFORMAT
+    NAME "XML"
+    DRIVER "OGR/GML"
+    MIMETYPE "text/xml"
+    FORMATOPTION "STORAGE=stream"
+    FORMATOPTION "FORM=SIMPLE"
+    FORMATOPTION "USE_FEATUREID=true"
+    FORMATOPTION "DSCO:GML_ID=fid"
+    FORMATOPTION "DSCO:PREFIX=example"
+    FORMATOPTION "DSCO:XSISCHEMAURI=http://example.unknown.org"
+  END
+
+  # outputformat used by WMS GetFeatureInfo request, not the WFS GetFeature requests
+  OUTPUTFORMAT
+    NAME "OGRGML3"
+    DRIVER "OGR/GML"
+    MIMETYPE "text/xml; subtype=gml/3.1.1"
+    FORMATOPTION "STORAGE=stream"
+    FORMATOPTION "FORM=SIMPLE"
+    FORMATOPTION "USE_FEATUREID=true"
+    FORMATOPTION "DSCO:FORMAT=GML3Deegree"
+    FORMATOPTION "DSCO:GML_FEATURE_COLLECTION=YES"
+    FORMATOPTION "DSCO:PREFIX=example"
+    FORMATOPTION "DSCO:XSISCHEMA=EXTERNAL"
+    FORMATOPTION "DSCO:TARGET_NAMESPACE=http://example.unknown.org"
+    FORMATOPTION "DSCO:XSISCHEMAURI=http://example.unknown.org http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"
+  END
+
+  # outputformat used by WMS GetFeatureInfo requests, not the WFS GetFeature requests
+  OUTPUTFORMAT
+    NAME "OGRGML32"
+    DRIVER "OGR/GML"
+    MIMETYPE "text/xml; subtype=gml/3.2.1"
+    FORMATOPTION "STORAGE=stream"
+    FORMATOPTION "FORM=SIMPLE"
+    FORMATOPTION "USE_FEATUREID=true"
+    FORMATOPTION "DSCO:FORMAT=GML3.2"
+    FORMATOPTION "DSCO:GML_ID=wms.example.getfeatureinfo.collection"
+    FORMATOPTION "DSCO:GML_FEATURE_COLLECTION=YES"
+    FORMATOPTION "DSCO:PREFIX=example"
+    FORMATOPTION "DSCO:XSISCHEMA=EXTERNAL"
+    FORMATOPTION "DSCO:TARGET_NAMESPACE=http://example.unknown.org"
+    FORMATOPTION "DSCO:XSISCHEMAURI=http://example.unknown.org http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"
+  END  
+
+  # -------------- SYMBOLS ------------------
+
+  SYMBOL
+    NAME "square"
+    TYPE vector
+    POINTS
+      0 0
+      0 1
+      1 1
+      1 0
+      0 0
+    END
+    FILLED true
+    ANCHORPOINT 0.5 0.5
+  END
+
+  SYMBOL
+    NAME "circle"
+    TYPE ellipse
+    POINTS
+      1 1
+    END
+    FILLED true
+    ANCHORPOINT 0.5 0.5
+  END

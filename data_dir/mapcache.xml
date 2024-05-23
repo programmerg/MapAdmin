@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapcache>
+
+   <!-- ========== GLOBAL SETTINGS ============== -->
+   
+   <errors>report</errors>
+   <log_level>error</log_level>
+   <auto_reload>true</auto_reload>
+   <default_format>png8</default_format>
+   <threaded_fetching>true</threaded_fetching>
+   <locker type="disk">
+      <directory>/tmp</directory>
+      <retry>0.01</retry>
+   </locker>
+   
+   <!-- ============= SERVICES ================== -->
+
+   <metadata>
+      <title>MapCache</title>
+      <abstract></abstract>
+      <!-- url>http://127.0.0.1/mapserver/cache</url -->
+   </metadata>
+
+   <service type="wms" enabled="true">
+      <!-- this service should actually be called "ogc". It is different from the other
+           services as it does not listen on the /wms endpoint, but directly on /.
+           It will intercept wms getmap requests that can be treated from configured
+           tilesets, and can optionally forward all the rest to (an)other server(s) -->
+      <full_wms>assemble</full_wms>
+      <resample_mode>bilinear</resample_mode>
+      <format>png8</format>
+      <maxsize>4096</maxsize>
+      <forwarding_rule name="catch all">
+         <http>
+            <url>http://127.0.0.1/mapserver/ows?</url>
+         </http>
+      </forwarding_rule>
+   </service>
+
+   <service type="wmts" enabled="true"/>
+
+   <service type="tms" enabled="true"/>
+
+   <service type="kml" enabled="false"/>
+
+   <service type="gmaps" enabled="false"/><!-- GOOGLE MAPS XYZ -->
+
+   <service type="ve" enabled="false"/><!-- VIRTUALEARTH / BING -->
+
+   <service type="demo" enabled="false"/>
+
+   <!-- =========== OUTPUTFORMATS =============== -->
+
+   <format name="png" type="PNG">
+      <compression>best</compression>
+   </format>
+
+   <format name="png8" type="PNG">
+      <compression>fast</compression>
+      <colors>256</colors>
+   </format>
+
+   <format name="jpeg" type="JPEG">
+      <quality>75</quality>
+      <photometric>RGB</photometric>
+      <optimize>true</optimize>
+   </format>
+
+   <format name="mixed" type="MIXED">
+      <transparent>png</transparent>
+      <opaque>jpeg</opaque>
+   </format>
+   
+   <format name="mvt" type="RAW">
+      <extension>mvt</extension>
+      <mime_type>application/vnd.mapbox-vector-tile</mime_type>
+   </format>
+
+   <!-- ============== GRIDS ==================== -->
+   <!-- 
+   preconfigured grids:
+
+   <grid name="WGS84">
+      <metadata>
+         <title>GoogleCRS84Quad</title>
+         <WellKnownScaleSet>urn:ogc:def:wkss:OGC:1.0:GoogleCRS84Quad</WellKnownScaleSet>
+      </metadata>
+      <extent>-180 -90 180 90</extent>
+      <srs>EPSG:4326</srs>
+      <units>dd</units>
+      <size>256 256</size>
+      <resolutions>1.40625000000000 0.703125000000000 0.351562500000000 0.175781250000000 8.78906250000000e-2 4.39453125000000e-2 2.19726562500000e-2 1.09863281250000e-2 5.49316406250000e-3 2.74658203125000e-3 1.37329101562500e-3 6.86645507812500e-4 3.43322753906250e-4 1.71661376953125e-4 8.58306884765625e-5 4.29153442382812e-5 2.14576721191406e-5 1.07288360595703e-5 5.36441802978516e-6</resolutions>
+   </grid>
+
+   <grid name="GoogleMapsCompatible">
+      <metadata>
+         <title>GoogleMapsCompatible</title>
+         <WellKnownScaleSet>urn:ogc:def:wkss:OGC:1.0:GoogleMapsCompatible</WellKnownScaleSet>
+      </metadata>
+      <extent>-20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480</extent>
+      <srs>EPSG:3857</srs>
+      <srsalias>EPSG:900913</srsalias>
+      <units>m</units>
+      <size>256 256</size>
+      <resolutions>156543.0339280410 78271.51696402048 39135.75848201023 19567.87924100512 9783.939620502561 4891.969810251280 2445.984905125640 1222.992452562820 611.4962262814100 305.7481131407048 152.8740565703525 76.43702828517624 38.21851414258813 19.10925707129406 9.554628535647032 4.777314267823516 2.388657133911758 1.194328566955879 0.5971642834779395</resolutions>
+   </grid>
+
+   <grid name="g">
+      <metadata>
+         <title>GoogleMapsCompatible</title>
+         <WellKnownScaleSet>urn:ogc:def:wkss:OGC:1.0:GoogleMapsCompatible</WellKnownScaleSet>
+      </metadata>
+      <extent>-20037508.3427892480,-20037508.3427892480,20037508.3427892480,20037508.3427892480</extent>
+      <srs>EPSG:900913</srs>
+      <srsalias>EPSG:3857</srsalias>
+      <units>m</units>
+      <size>256 256</size>
+      <resolutions>156543.0339280410 78271.51696402048 39135.75848201023 19567.87924100512 9783.939620502561 4891.969810251280 2445.984905125640 1222.992452562820 611.4962262814100 305.7481131407048 152.8740565703525 76.43702828517624 38.21851414258813 19.10925707129406 9.554628535647032 4.777314267823516 2.388657133911758 1.194328566955879 0.5971642834779395</resolutions>
+   </grid>
+   
+   <grid name="worldwind">
+      <extent>-180 -90 180 90</extent>
+      <srs>EPSG:4326</srs>
+      <units>dd</units>
+      <size>512 512</size>
+      <resolutions>0.0703125000000000 0.0351562500000000 0.0175781250000000 8.78906250000000e-3 4.39453125000000e-3 2.19726562500000e-3 1.09863281250000e-3 5.49316406250000e-4 2.74658203125000e-4 1.37329101562500e-4 6.86645507812500e-5 3.43322753906250e-5 1.71661376953125e-5 8.58306884765625e-6 4.29153442382812e-6 2.14576721191406e-6 1.07288360595703e-6 5.36441802978516e-7</resolutions>
+   </grid>
+   -->
+
+   <grid name="EPSG:23700">
+      <extent>421391.21 48212.58 934220.63 366660.88</extent>
+      <srs>EPSG:23700</srs>
+      <units>m</units>
+      <size>256 256</size>
+      <resolutions>2003.239921875 1001.6199609375 500.80998046875 250.404990234375 125.2024951171875 62.60124755859375 31.300623779296874 15.650311889648437 7.8251559448242185 3.9125779724121093 1.9562889862060546 0.9781444931030273 0.48907224655151366 0.24453612327575683 0.12226806163787841 0.06113403081893921 0.030567015409469604</resolutions>
+      <origin>top-left</origin>
+   </grid>
+
+   <!-- ============== CACHES =================== -->
+
+   <cache name="disk" type="disk"> <!-- layout="arcgis|worldwind|template" -->
+      <base>/var/www/data_dir/cache</base>
+   </cache>
+
+   <!-- cache name="sqlite" type="sqlite3">
+      <dbfile>/path/to/dbfile.sqlite3</dbfile>
+      <queries>
+         <create>create table if not exists tiles(tileset text, grid text, x integer, y integer, z integer, data blob, dim text, ctime datetime, primary key(tileset,grid,x,y,z,dim))</create>
+         <exists>select 1 from tiles where x=:x and y=:y and z=:z and dim=:dim and tileset=:tileset and grid=:grid</exists>
+         <get>select data,strftime("%s",ctime) from tiles where tileset=:tileset and grid=:grid and x=:x and y=:y and z=:z and dim=:dim</get>
+         <set>insert or replace into tiles(tileset,grid,x,y,z,data,dim,ctime) values (:tileset,:grid,:x,:y,:z,:data,:dim,datetime('now'))</set>
+         <delete>delete from tiles where x=:x and y=:y and z=:z and dim=:dim and tileset=:tileset and grid=:grid</delete>
+      </queries>
+      <detect_blank/>
+   </cache -->
+
+   <!-- cache name="mbtiles" type="mbtiles">
+      <dbfile>/Users/XXX/Documents/MapBox/tiles/natural-earth-1.mbtiles</dbfile>
+      <detect_blank/>
+   </cache -->
+
+   <!-- cache name="memcache" type="memcache">
+      <server>
+         <host>localhost</host>
+         <port>11211</port>
+      </server>
+      <detect_blank/>
+   </cache -->
+
+   <!-- cache name="s3" type="s3">
+      <url>https://foo.s3.amazonaws.com/tiles/{tileset}/{grid}/{z}/{x}/{y}/{ext}</url>
+      <headers>
+         <Host>foo.s3.amazonaws.com</Host>
+      </headers>
+      <id>AKIE3SDEIT6TUG8DXEQI</id>
+      <secret>5F+dGsTfsdfkjdsfSDdasf4555d/sSff56sd/RDS</secret>
+      <region>eu-west-1</region>
+      <operation type="put">
+         <headers>
+            <x-amz-storage-class>REDUCED_REDUNDANCY</x-amz-storage-class>
+            <x-amz-acl>public-read</x-amz-acl>
+         </headers>
+      </operation>
+      <detect_blank/>
+   </cache -->
+
+   <!-- cache name="azure" type="azure">
+      <url>https://foo.blob.core.windows.net/tiles/{tileset}/{grid}/{z}/{x}/{y}/{ext}</url>
+      <headers>
+         <Host>foo.blob.core.windows.net</Host>
+      </headers>
+      <id>foo</id>
+      <secret>foobarcccccccccccccccccccccyA==</secret>
+      <container>tiles</container>
+      <detect_blank/>
+   </cache -->
+
+   <!-- cache name="google" type="google">
+      <url>https://storage.googleapis.com/mytiles-mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</url>
+      <access>GOOGPGDWFDG345SDFGSD</access>
+      <secret>sdfgsdSDFwedfwefr2345324dfsGdsfgs</secret>
+      <operation type="put">
+         <headers>
+            <x-amz-acl>public-read</x-amz-acl>
+         </headers>
+      </operation>
+      <detect_blank/>
+   </cache -->
+
+   <!-- ============== SOURCES ================== -->
+
+   <source name="openstreetmap_source" type="wms">
+      <http>
+         <url>http://127.0.0.1/mapserver/osm/ows?</url>
+      </http>
+      <getmap>
+         <params>
+            <FORMAT>image/png</FORMAT>
+            <LAYERS>default</LAYERS>
+            <TRANSPARENT>true</TRANSPARENT>
+         </params>
+      </getmap>
+   </source>
+
+   <!-- ============= TILESETS ================== -->
+
+   <tileset name="osm">
+      <metadata>
+         <title>osm</title>
+         <abstract></abstract>
+      </metadata>
+      <source>openstreetmap_source</source>
+      <cache>disk</cache>
+      <format>png</format>
+      <grid restricted_extent="16.11 45.74 22.9 48.58" minzoom="0" maxzoom="8">WGS84</grid>
+      <grid restricted_extent="1781111.85 5621521.49 2549216.34 6203894.35" minzoom="0" maxzoom="8">g</grid>
+      <grid>EPSG:23700</grid>
+      <metatile>5 5</metatile>
+      <metabuffer>750</metabuffer>
+      <expires>3600</expires>
+   </tileset>
+
+</mapcache>
