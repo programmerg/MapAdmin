@@ -1,0 +1,7 @@
+MAP
+
+  INCLUDE "/var/www/data_dir/mapserver.map"
+
+	# ...
+
+END

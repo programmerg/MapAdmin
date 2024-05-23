@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# redirect all requests to /mapserver/web/
+RewriteRule ^$ /mapserver/web/ [L,R=301]

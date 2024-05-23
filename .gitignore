@@ -1,0 +1,10 @@
+.DS_Store
+.git
+.idea
+.svn
+.vscode
+.env
+/client/*
+/app/*
+/docs/*
+_*
