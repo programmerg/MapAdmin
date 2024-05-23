@@ -4,7 +4,4 @@
 .svn
 .vscode
 .env
-/client/*
-/app/*
-/docs/*
 _*
