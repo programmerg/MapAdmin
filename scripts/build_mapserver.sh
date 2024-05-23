@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# Build MapServer from source
+# https://www.mapserver.org/installation/unix.html
+
+set -e
+cd /usr/local/src
+wget -qO - https://download.osgeo.org/mapserver/mapserver-$MAPSERVER_VERSION.tar.gz | tar -xz
+cd mapserver-$MAPSERVER_VERSION
+mkdir build
+cd build
+cmake \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DWITH_PIXMAN=ON \
+  -DWITH_PROJ=ON \
+  -DWITH_KML=ON \
+  -DWITH_SOS=OFF \
+  -DWITH_WMS=ON \
+  -DWITH_FRIBIDI=ON \
+  -DWITH_HARFBUZZ=ON \
+  -DWITH_ICONV=ON \
+  -DWITH_CAIRO=ON \
+  -DWITH_SVGCAIRO=OFF \
+  -DWITH_RSVG=OFF \
+  -DWITH_MYSQL=OFF \
+  -DWITH_FCGI=ON \
+  -DWITH_GEOS=ON \
+  -DWITH_POSTGIS=ON \
+  -DWITH_GDAL=ON \
+  -DWITH_OGR=ON \
+  -DWITH_CURL=OFF \
+  -DWITH_CLIENT_WMS=OFF \
+  -DWITH_CLIENT_WFS=OFF \
+  -DWITH_WFS=ON \
+  -DWITH_WCS=ON \
+  -DWITH_LIBXML2=ON \
+  -DWITH_THREAD_SAFETY=OFF \
+  -DWITH_GIF=ON \
+  -DWITH_PYTHON=OFF \
+  -DWITH_PHP=OFF \
+  -DWITH_PERL=OFF \
+  -DWITH_RUBY=OFF \
+  -DWITH_JAVA=OFF \
+  -DWITH_CSHARP=OFF \
+  -DWITH_ORACLESPATIAL=OFF \
+  -DWITH_ORACLE_PLUGIN=OFF \
+  -DWITH_MSSQL2008=OFF \
+  -DWITH_SDE_PLUGIN=OFF \
+  -DWITH_SDE=OFF \
+  -DWITH_EXEMPI=ON \
+  -DWITH_XMLMAPFILE=OFF \
+  -DWITH_V8=OFF \
+  -DWITH_POINT_Z_M=ON \
+  -DWITH_PROTOBUFC=ON \
+  -DBUILD_STATIC=OFF \
+  -DLINK_STATIC_LIBMAPSERVER=OFF \
+  -DWITH_APACHE_MODULE=OFF \
+  -DWITH_GENERIC_NINT=OFF \
+  ..
+make
+make install
