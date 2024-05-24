@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>MapAdmin</title>
+    <meta name="description" content="MapServer Suite Web Administration Interface">
+    <meta name="author" content="Gergo Gelencser <programmerg@gmail.com>">
+
+    <base href="/mapserver/web/" />
+
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="./manifest.json">
+
+    <style>
+      html, body { margin: 0; padding: 0; height: 100%; }
+      body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" }
+      .centered { display: flex; justify-content: center; align-items: center; }
+      .bg-light { color: #212529; background-color: #f8f9fa; }
+      .warning { color: #09bd9f; }
+      .error { color: #C55042; }
+      .muted { color: #888888; }
+      .card { width: 60%; margin: 2rem auto; padding: 1rem; }
+      .card > * { padding: 0.3rem 0; }
+      .card > header > h1 { font-size: 6rem; margin: 1rem 0; }
+    </style>
+  </head>
+  <body class="bg-light centered">
+    <div class="card">
+      <header>
+        <h1 class="error">:(</h1>
+      </header>
+      <section>
+        <p>The requested page is currently unavailable.</p>
+        <p>The service may be down, maintenance is in progress, or a server error has occurred.</p>
+      </section>
+      <footer>
+        <p class="muted">MapAdmin</p>
+      </footer>
+    </div>
+  </body>
+</html>

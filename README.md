@@ -1,4 +1,4 @@
-# MapAdmin
+# ![logo](client/assets/logo-32x32.png) MapAdmin
 
 **MapAdmin** is a web administration interface and a PHP wrapper around MapServer 
 which allows to manipulate mapfiles in a RESTFul way. It has been developped to match as

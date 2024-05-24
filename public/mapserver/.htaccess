@@ -15,8 +15,12 @@ RewriteRule ^([a-zA-Z0-9\-\_]+)/cache/service/(ows|wmts|tms)$ cache/service/$2 [
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^rest(.*)/?$ rest/index.php?$1 [QSA,END]
-RewriteRule ^web(.*)/?$ web/index.html [QSA,END]
+RewriteRule ^rest/(.*)/?$ rest/index.php?$1 [QSA,END]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^web/(.*)/?$ web/index.html [QSA,END]
 
 # redirect to client if url is empty
 RewriteRule ^$ web/ [L,R=301]
