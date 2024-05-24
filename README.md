@@ -4,10 +4,12 @@
 which allows to manipulate mapfiles in a RESTFul way. It has been developped to match as
 close as possible the way the GeoServer REST API acts.
 
+It is Free and Open Source Software. All contributions are most welcome!
+
 ## Inspiration
 
 - [GeoServer REST API](https://docs.geoserver.org/stable/en/user/rest)
-- [Neogeo Technologies - MapServer Rest API](https://github.com/neogeo-technologies/mra)
+- [Juan Luis Rodríguez Ponce - MapServer Rest API](https://github.com/juanluisrp/mra)
 - [Jonathan Beliën - MapFile Generator](https://github.com/jbelien/MapFile-Generator)
 
 ## Components
@@ -25,9 +27,10 @@ close as possible the way the GeoServer REST API acts.
 - Web Catalogue Service (WCS)
 - Web Map Tile Service (WMTS)
 - Tile Map Service (TMS)
+- Sensor Observation Service (SOS)
 - OGC API
 
-[For detailed examples, visit the docs](docs/ogc-web-services.md)
+For more information, visit the [documentation](docs/ogc-web-services.md)
 
 ## Usage
 
@@ -63,3 +66,7 @@ docker exec \
   -it mapserver \
   mapcache_seed -c /var/www/data_dir/mapcache.xml -t "$tileSetName" -g "$gridName"
 ```
+
+## License
+
+This project is Free and Open Source Software, licensed under the [MIT license](./LICENSE).

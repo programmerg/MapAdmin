@@ -11,11 +11,12 @@ RewriteRule ^([a-zA-Z0-9\-\_]+)/ogcapi(.*)$ ows/$1/ogcapi$2 [PT,QSA,NS,END]
 # RewriteRule ^cache/service/(ows|wmts|tms)$ cache/service/$1 [PT,QSA,NS,END]
 RewriteRule ^([a-zA-Z0-9\-\_]+)/cache/service/(ows|wmts|tms)$ cache/service/$2 [PT,QSA,NS,END]
 
-# serve virtual resources (like /api) with index.php
+# serve virtual resources with index.php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^api/(.*)$ index.php?$1 [QSA,END]
+RewriteRule ^rest(.*)/?$ rest/index.php?$1 [QSA,END]
+RewriteRule ^web(.*)/?$ web/index.html [QSA,END]
 
 # redirect to client if url is empty
 RewriteRule ^$ web/ [L,R=301]

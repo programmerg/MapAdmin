@@ -1,0 +1,1 @@
+<?php include(dirname(__FILE__, 3) . 'api/index.php');

@@ -42,9 +42,9 @@ Providing simple urls to map tiles
 - http://localhost/mapserver/cache/service/tms/1.0.0
 - http://localhost/mapserver/cache/service/tms/1.0.0/{tilesetName}@EPSG:{crs}/{z}/{x}/{y}.png
 
-###  (SOS)
+### Sensor Observation Service (SOS)
 
-...
+Query real-time sensor data and sensor data time series
 
 - http://localhost/mapserver/{workspace}/ows?SERVICE=SOS&VERSION=1.0.0&REQUEST=GetCapabilities
 - http://localhost/mapserver/{workspace}/ows?SERVICE=SOS&VERSION=2.0.1&REQUEST=GetObservation&Offering={}&observedproperty={}&responseFormat={}

@@ -5,3 +5,5 @@
 .vscode
 .env
 _*
+vendor
+node_modules
