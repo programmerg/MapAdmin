@@ -1,0 +1,16 @@
+{
+  "name": "MapAdmin Web client",
+  "short_name": "mapadmin-client",
+  "start_url": "/mapserver/web/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#15996f",
+  "background_color": "#f0f0f0",
+  "icons": [
+    {
+      "src": "assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
