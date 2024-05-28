@@ -1,7 +1,7 @@
 {
   "name": "MapAdmin Web client",
   "short_name": "mapadmin-client",
-  "start_url": "/mapserver/web/index.html",
+  "start_url": "/MapAdmin/index.html",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#15996f",
