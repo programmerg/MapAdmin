@@ -1,0 +1,46 @@
+{
+    "type": "project",
+    "name": "programmerg/mapadmin-api",
+    "description": "MapServer Suite Web Administration Interface",
+    "keywords": ["mapserver", "mapcache", "rest-api", "web-gui", "admin", "ows", "ogc-services"],
+    "homepage": "https://github.com/programmerg/mapadmin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gelencsér Gergő",
+            "email": "programmerg@gmail.com",
+            "homepage": "https://github.com/programmerg"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "jbelien/mapfile-php-library": "2.x-dev",
+        "dilab/resumable.php": "^0.1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Api\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S localhost:8080 -t ../public/ ../public/mapserver/rest/index.php"
+        ],
+        "test": "phpunit"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-stressless": "^2.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
