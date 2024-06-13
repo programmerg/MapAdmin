@@ -1,2 +1,6 @@
 *
 !.gitignore
+!ogcapi
+!ogcapi/*
+!cgi
+!cgi/*

@@ -1,0 +1,48 @@
+<!-- MapServer Template -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MapServer CGI User Interface</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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" />
+    <style>
+      html { position: relative; min-height: 100%; }
+      body { padding-top: 5rem; margin-bottom: 40px; }
+      #page { padding: 1.5rem 0; }
+    </style>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="">
+          <img height="30" width="30" alt="MapServer" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAABXpJREFUWAmlV2FoFEcUnjd7uV6u/dGWtAV/SAipiEpyJtIWGsRKkFJEUmgltKGENElDesYQqkgpRYqUEI6A17sYY0zFVpHoDxEJIiXYkEaRs9hrK204IoRUtBRbS2PimZvpN5vsuLOXO3O4sLdv3nzvvW/ezns7R1JKYkvXruSumBDiWDwUTzi6lTx37jzNb958UAdXa175+oeLXPAduGPRjdG/HmdPbgLhn8J/wqCESTYmuYzEK+Ln8zmorPwmWFREzYxRB3BlROzCq0cvR2D/HcbzuI8LEr19FX2Tufx4CSjGz7vAvxGjHnqaTkbLo2lHX1V1uoTztArabuLl+GuDV75gxC46WPWUTJ4lQT2xjbErbr2SuUfhHa+F8ZCYFVPhZLhNYaurT0YRfBriZ7jdZDGkIBF5fYAP1SHSBDI81v5zexWA+soC6xlTWMUEswkQyTCmAua0HuXSO4Aa7I1aZ6CeXgI6zW5QAXJaklzIiyczpkmA7I2T1z7fpJTsPme8oEWYBOSTEcD7nxdMPAEBxv7JuUJi+VO7aHgGW/4/iCKnH2H6MTJQTMVbsYpObNtprwPs5JwrQ+onYFeXSLzXH6uM3bCktRZEBuEjy4a46ccgMDfwwXlxuHl+7sK2DXDQCAc3HCIox6wMIPA5NJ8aKf11QrDQpk0nhlCuWzOU6bXIOplhmTI0ugh8/Kv9CNOPQQAtI4SV9BdPl07JI62l/OiHW4QU20FmDA6c1aQReEhKsY4x3z6030bVF1Ce+4EpRStXpbgdwUexIc/DX5I9YGXwsRf6W1iI4wdDeLB/H/04dVyCle0XwtrrG2obyGR4g2iN2+91YSFTxnnRasx3Ey3seGRqS0GLWwGs2h7gtYUgHEfXmCZJkfRCel3xU8VODBvjyUBWgwkitZ1EYooPtKnWy3w+fopzgXfOvMExKwNouUYAO4pkq7HyaJGvKJWRmeU7YUdHym+Dl//xIcVvLk5RzfIQpSU/ytCbVTe8BARUVvSlM3D7dkDLerZggTi+fgX5KQhcMJ8VGBRAgOduLisI5EC4NP1oArW1d1SdX3WA2U95P1tnaFBe4hya0CS0uU9Ci51SG2oCra3VC+Kjfmw0vg07fEwjtEB3tWgKIEY4I1jl6a6eLwMnWq6LX9evsTsq6t6Eok64NPxoAl2XuwL4Vs9Qy+EdrOVII0pP7XZ9JEPD8X4nMKYDQvhLWVfvWdER6fcL/7ezs7SJT7z+Czqqj428XYGe0IoSTDlEUKZGdjSBJUAQ4DCMUrJ5MMxbBj8H5w24j+G+vYSZgtzJnpstZbt7k1ZXzwg+PaOYewuN5xnLYkHIq5CBCPvjhRQ/2lbmH27ajPE70F8VljAykKtmFbF61HQ9tQxexLN7y2Tcfi13Nsc3vFj9oAGdLQFMOQjjsXiBOLqgasX6oP0sdPse3ivqpCMtQ9DWv/HV79MOXj29GXDP2TICbMPKRr9/OXxKKV6qSqcQfABiuQ1w/xALSslVBrwXiLF23JOXPl5b7558LAEXeM2SvMqlM0XJVMfMlVWFVfOr3UaFEHDbLS/jvId3XZDPgsDLR30y7coJUJ5jVkEcSLjhmsDMzEwaE8O4DYAGS32qUX+5si/J7mLDDuIN/IjJZDZgUYMqMfqJJjD87rDAea4+z3nOMfQSuIWq+yTwMFB6reFaJBpdn4zFKkI4GW1Hv5jwEuGcG31AE3CAB0MHU7FQrFWd51B+3dAvBibmGDrfhBtYcdO9v++VJd5P9I43javTsL76+kIjsVhlDedsM3rBWUzYmQUxoxPmLJlDlYdUH/90T3LPgTkxh9a8tLvVH0/JziQaEiM6Wh4hGq0Yx/T47t3Xy4XgnVJaTke1rf4Hn3IQm7GMbUAAAAAASUVORK5CYII=">
+          MapServer CGI User Interface
+        </a>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+      <div id="page">
+        
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb bg-light">
+						<li class="breadcrumb-item"><a href="javascript:history.go(-1);">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Query results</li>
+					</ol>
+				</nav>
+
+        <h1>Query results</h1>
+
+        <p>
+          <img alt="Querymap" title="Querymap" src="[img]" />
+        </p>
+
+        <p>
+          <b>Number of results:</b> [nr]
+          <br>
+          <b>Number of layers:</b> [nl]
+        </p>
+

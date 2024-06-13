@@ -2,6 +2,16 @@ MAP
 
   INCLUDE "/var/www/data_dir/mapserver.map"
 
+  WEB
+    METADATA
+#     "ows_onlineresource"                "/mapserver/default/ows"
+#     "wms_onlineresource"                "/mapserver/default/wms"
+#     "wfs_onlineresource"                "/mapserver/default/wfs"
+#     "wcs_onlineresource"                "/mapserver/default/wcs"
+      "oga_onlineresource"                "/mapserver/default/ogcapi"
+    END
+  END
+
 	# ...
 
 END

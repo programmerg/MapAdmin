@@ -1,15 +1,8 @@
 RewriteEngine On
+RewriteBase /mapserver/
 
 RewriteCond %{HTTP:Authorization} ^(.+)$
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-# serve ows requests
-RewriteBase /mapserver/
-RewriteRule ^ows$ ows?map=default [PT,QSA,NS,END]
-RewriteRule ^([a-zA-Z0-9\-\_]+)/ows$ ows?map=$1 [PT,QSA,NS,END]
-RewriteRule ^([a-zA-Z0-9\-\_]+)/ogcapi(.*)$ ows/$1/ogcapi$2 [PT,QSA,NS,END]
-# RewriteRule ^cache/service/(ows|wmts|tms)$ cache/service/$1 [PT,QSA,NS,END]
-RewriteRule ^([a-zA-Z0-9\-\_]+)/cache/service/(ows|wmts|tms)$ cache/service/$2 [PT,QSA,NS,END]
 
 # serve virtual resources with index.php
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -17,6 +10,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^rest/(.*)/?$ rest/index.php?$1 [QSA,END]
 
+# serve virtual resources with index.html
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l

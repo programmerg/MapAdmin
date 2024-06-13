@@ -47,7 +47,8 @@ Providing simple urls to map tiles
 Query real-time sensor data and sensor data time series
 
 - http://localhost/mapserver/{workspace}/ows?SERVICE=SOS&VERSION=1.0.0&REQUEST=GetCapabilities
-- http://localhost/mapserver/{workspace}/ows?SERVICE=SOS&VERSION=2.0.1&REQUEST=GetObservation&Offering={}&observedproperty={}&responseFormat={}
+- http://localhost/mapserver/{workspace}/ows?SERVICE=SOS&VERSION=2.0.1&REQUEST=DescribeSensor&SENSORID={id}
+- http://localhost/mapserver/{workspace}/ows?SERVICE=SOS&VERSION=2.0.1&REQUEST=GetObservation&SENSORID={id}&CRS=epsg:{crs}&BBOX={bbox}&OFFERING={offering}&OBSERVEDPROPERTY={property}&RESPONSEFORMAT={format}
 
 ### Web Processing Service (WPS)
 
