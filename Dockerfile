@@ -35,12 +35,28 @@ RUN apt remove -y cmake build-essential wget && \
     apt autoremove -y && \
     apt clean && \
     rm  -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
- 
-# Install application dependencies
 
-# COPY --chown=www-data:www-data ./api/composer.json ./api/composer.lock /var/www/api/
-# COPY --chown=www-data:www-data ./client/package.json ./client/package-lock.json /var/www/client/
-# RUN composer install && npm ci && npm run prod
+# --------------------------------------------------------------------------
+
+# FROM node:lts-alpine as client
+# 
+# WORKDIR /var/www/client/
+# 
+# COPY ./client/package.json ./client/package-lock.json ./
+# 
+# RUN npm ci 
+# 
+# COPY . /var/www/
+# 
+# RUN npm run build
+
+# --------------------------------------------------------------------------
+
+# FROM composer:lts as api
+# 
+# COPY ./api/composer.json ./api/composer.lock ./app/
+
+# RUN composer install
 
 # --------------------------------------------------------------------------
 
@@ -99,6 +115,9 @@ COPY ./php.conf /etc/php/8.3/fpm/pool.d/www.conf
 # Copy source code
 
 COPY --chown=www-data:www-data . /var/www
+# COPY --chown=www-data:www-data --from=client /var/www/client/node_modules /var/www/client/
+# COPY --chown=www-data:www-data --from=client /var/www/public/mapserver/web /var/www/public/mapserver/
+# COPY --chown=www-data:www-data --from=api /app/vendor /var/www/api/
 
 # Start the server
 

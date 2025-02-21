@@ -37,4 +37,4 @@ make install
 
 # BUGFIX: this line can be removed after 1.14.1 has been released
 # https://github.com/MapServer/mapcache/pull/320/files
-sed -i 's/ctx->cfg/ctx->config/g' /usr/local/src/mapcache-${MAPCACHE_VERSION}/nginx/ngx_http_mapcache_module.c
+# sed -i 's/ctx->cfg/ctx->config/g' /usr/local/src/mapcache-${MAPCACHE_VERSION}/nginx/ngx_http_mapcache_module.c
